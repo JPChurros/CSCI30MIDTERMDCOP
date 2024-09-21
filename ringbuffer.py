@@ -32,7 +32,7 @@ class RingBuffer:
         Is the buffer full (size equals capacity)?
         '''
         # TO-DO: implement this
-        return self._size == self.capacity
+        return self._size == self.MAX_CAP
 
     def enqueue(self, x: float):
         '''
@@ -43,7 +43,7 @@ class RingBuffer:
             raise RingBufferFull("Cannot enqueue. The RingBuffer is full.")                            
         else:
             self.buffer[self._rear] = x
-            self._rear = (self._rear + 1) % self.capacity
+            self._rear = (self._rear + 1) % self.MAX_CAP
             self._size += 1
 
 
@@ -57,7 +57,7 @@ class RingBuffer:
         else:
             x = self.buffer[self._front]
             self.buffer[self._front] = None
-            self._front = (self._front + 1) % self.capacity
+            self._front = (self._front + 1) % self.MAX_CAP
             self._size -= 1
             return x
 
