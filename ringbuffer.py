@@ -6,7 +6,7 @@ class RingBuffer:
         Create an empty ring buffer, with given max capacity
         '''
         # TO-DO: implement this
-        self.capacity = capacity
+        self.MAX_CAP = capacity
         self.buffer = [None] * capacity         # creates the buffer array 
         self._front = 0                         # 0 since its still empty
         self._rear = 0                          # 0 since its still empty
