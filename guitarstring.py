@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import math
 import random
+from ringbuffer import RingBuffer
 
 class GuitarString:
     def __init__(self, frequency: float):
@@ -32,9 +33,8 @@ class GuitarString:
         Set the buffer to white noise
         '''
         # TO-DO: implement this
-        for x in range (self.capacity){
+        for x in range (self.capacity):
             self.buffer.enqueue(random.uniform(-1/2, 1/2))
-        }
 
 
     def tick(self):
@@ -45,7 +45,7 @@ class GuitarString:
         #assuming energy decay factor is .996
         sample1 = self.buffer.dequeue()
         sample2 = self.buffer.peek()
-        self.buffer.enqueue(.996 * (1/2(sample1 + sample2)))
+        self.buffer.enqueue(.996 * (1/2 * (sample1 + sample2)))
         self.totalticks += 1
 
     def sample(self) -> float:
