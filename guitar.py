@@ -31,7 +31,9 @@ if __name__ == '__main__':
         # check if the user has typed a key; if so, process it
         if stdkeys.has_next_key_typed():
             key = stdkeys.next_key_typed()
+            print(f"Key pressed: {key}")
             if key in keyboard:
+                print(f"Key pressed: {key} is in keyboard")
                 freq_list[keyboard.index(key)].pluck()
 
         # compute the superposition of samples
