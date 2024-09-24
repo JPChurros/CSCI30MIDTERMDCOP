@@ -13,6 +13,8 @@ class GuitarString:
         self.capacity = math.ceil(44100/frequency) # 
         self.buffer = RingBuffer(self.capacity) #im not sure about the first parameter and whether or not it is supposed to be self or something else
         
+        for _ in range(self.capacity):
+            self.buffer.enqueue(0.0)
 
     @classmethod
     def make_from_array(cls, init: list[int]): #I DONT KNOW IF WE ARE SUPPOSED TO DO ANYTHING HERE CAUSE THERE IS NO #TO-DO
@@ -32,9 +34,11 @@ class GuitarString:
         '''
         Set the buffer to white noise
         '''
+        while not self.buffer.is_empty():
+            self.buffer.dequeue()
         # TO-DO: implement this
         for x in range (self.capacity):
-            self.buffer.enqueue(random.uniform(-1/2, 1/2))
+            self.buffer.enqueue(random.uniform(-0.5, 0.5))
 
 
     def tick(self):
