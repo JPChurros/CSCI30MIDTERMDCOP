@@ -13,6 +13,7 @@ if __name__ == '__main__':
     keyboard = "q2we4r5ty7u8i9op-[=]"
 
     freq_list = []
+    plucked_strings = set()
 
     for x in range(len(keyboard)):
         frequency_exp = 2 ** ((x-12)/12)
@@ -31,13 +32,16 @@ if __name__ == '__main__':
         # check if the user has typed a key; if so, process it
         if stdkeys.has_next_key_typed():
             key = stdkeys.next_key_typed()
-            print(f"Key pressed: {key}")
             if key in keyboard:
-                print(f"Key pressed: {key} is in keyboard")
-                freq_list[keyboard.index(key)].pluck()
-
+                # freq_list[keyboard.index(key)].pluck()
+                string = freq_list[keyboard.index(key)]
+                string.pluck()
+                print(string.time())
+                plucked_strings.add(string)
         # compute the superposition of samples
-        sample = sum([frequen.sample() for frequen in freq_list])
+
+        # sample = sum([frequen.sample() for frequen in freq_list])
+        sample = sum([plucked_frequen.sample() for plucked_frequen in plucked_strings])
 
         # play the sample on standard audio
         play_sample(sample)

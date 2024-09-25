@@ -34,6 +34,7 @@ class GuitarString:
         '''
         Set the buffer to white noise
         '''
+        self.totalticks = 0
         while not self.buffer.is_empty():
             self.buffer.dequeue()
         # TO-DO: implement this
