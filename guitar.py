@@ -35,9 +35,11 @@ if __name__ == '__main__':
             if key in keyboard:
                 # freq_list[keyboard.index(key)].pluck()
                 string = freq_list[keyboard.index(key)]
+                string.resetTick()
                 string.pluck()
                 print(string.time())
                 plucked_strings.add(string)
+                print(len(plucked_strings))
         # compute the superposition of samples
 
         # sample = sum([frequen.sample() for frequen in freq_list])
@@ -46,5 +48,6 @@ if __name__ == '__main__':
         # play the sample on standard audio
         play_sample(sample)
         # advance the simulation of each guitar string by one step
-        for frequen in freq_list:
-            frequen.tick()
+        for plucked_frequen in plucked_strings:
+            if plucked_frequen.time()<207271:
+                plucked_frequen.tick()

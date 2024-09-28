@@ -34,14 +34,17 @@ class GuitarString:
         '''
         Set the buffer to white noise
         '''
-        self.totalticks = 0
         while not self.buffer.is_empty():
             self.buffer.dequeue()
         # TO-DO: implement this
         for x in range (self.capacity):
             self.buffer.enqueue(random.uniform(-0.5, 0.5))
 
-
+    def resetTick(self):
+        '''
+        Sets ticks back to 0
+        '''
+        self.totalticks = 0
     def tick(self):
         '''
         Advance the simulation one time step by applying the Karplus--Strong update
