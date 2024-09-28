@@ -14,6 +14,8 @@ if __name__ == '__main__':
 
     freq_list = []
     plucked_strings = set()
+    toRemove = []
+    pluckedCounter = 0
 
     for x in range(len(keyboard)):
         frequency_exp = 2 ** ((x-12)/12)
@@ -24,7 +26,7 @@ if __name__ == '__main__':
         # it turns out that the bottleneck is in polling for key events
         # for every iteration, so we'll do it less often, say every 
         # 1000 or so iterations
-        if n_iters == 1000:
+        if n_iters == 2000:
             stdkeys.poll()
             n_iters = 0
         n_iters += 1
@@ -37,9 +39,11 @@ if __name__ == '__main__':
                 string = freq_list[keyboard.index(key)]
                 string.resetTick()
                 string.pluck()
-                print(string.time())
+                #print(string.time())
                 plucked_strings.add(string)
-                print(len(plucked_strings))
+                print("Plucked Strings Length: ", len(plucked_strings))
+                print("Plucked Counter:", pluckedCounter)
+                pluckedCounter += 1
         # compute the superposition of samples
 
         # sample = sum([frequen.sample() for frequen in freq_list])
@@ -48,6 +52,12 @@ if __name__ == '__main__':
         # play the sample on standard audio
         play_sample(sample)
         # advance the simulation of each guitar string by one step
-        for plucked_frequen in plucked_strings:
+        for plucked_frequen in plucked_strings: 
             if plucked_frequen.time()<207271:
                 plucked_frequen.tick()
+            elif plucked_frequen.time() >=207271:
+                toRemove.append(plucked_frequen)
+
+        for removable in toRemove:
+            plucked_strings.remove(removable)
+        toRemove = []
