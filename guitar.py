@@ -34,18 +34,15 @@ if __name__ == '__main__':
         if stdkeys.has_next_key_typed():
             key = stdkeys.next_key_typed()
             if key in keyboard:
-                # freq_list[keyboard.index(key)].pluck()
                 string = freq_list[keyboard.index(key)]
                 string.resetTick()
                 string.pluck()
-                #print(string.time())
                 plucked_strings.add(string)
                 print("Plucked Strings Length: ", len(plucked_strings))
                 print("Plucked Counter:", pluckedCounter)
                 pluckedCounter += 1
         # compute the superposition of samples
 
-        # sample = sum([frequen.sample() for frequen in freq_list])
         sample = sum([plucked_frequen.sample() for plucked_frequen in plucked_strings])
 
         # play the sample on standard audio

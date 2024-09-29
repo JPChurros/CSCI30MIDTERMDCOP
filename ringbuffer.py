@@ -5,8 +5,7 @@ class RingBuffer:
         '''
         Create an empty ring buffer, with given max capacity
         '''
-        # TO-DO: implement this
-        self.MAX_CAP = capacity
+        self.MAX_CAP = capacity                 # sets the buffer's maximum capacity
         self.buffer = [None] * capacity         # creates the buffer array 
         self._front = 0                         # 0 since its still empty
         self._rear = 0                          # 0 since its still empty
@@ -18,27 +17,22 @@ class RingBuffer:
         '''   
         return self._size
 
-        # TO-DO: implement this
-
     def is_empty(self) -> bool:
         '''
         Is the buffer empty (size equals zero)?
         '''
-        # TO-DO: implement this
         return self._size == 0
         
     def is_full(self) -> bool:
         '''
         Is the buffer full (size equals capacity)?
         '''
-        # TO-DO: implement this
         return self._size == self.MAX_CAP
 
     def enqueue(self, x: float):
         '''
         Add item `x` to the end
         '''
-        # TO-DO: implement this
         if self.is_full():
             raise RingBufferFull("Cannot enqueue. The RingBuffer is full.")                            
         else:
@@ -51,7 +45,6 @@ class RingBuffer:
         '''
         Return and remove item from the front
         '''
-        # TO-DO: implement this
         if self.is_empty():
             raise RingBufferEmpty("Cannot dequeue. The RingBuffer is empty.")
         else:
@@ -65,14 +58,11 @@ class RingBuffer:
         '''
         Return (but do not delete) item from the front
         '''
-        # TO-DO: implement this
         if self.is_empty():
             raise RingBufferEmpty("Cannot dequeue. The RingBuffer is empty.")
         else:
             return self.buffer[self._front]
 
-
-# added here based on: https://www.w3schools.com/python/gloss_python_raise.asp
 class RingBufferFull(Exception):
     '''
     The exception raised when the ring buffer is full when attempting to
