@@ -18,8 +18,7 @@ if __name__ == '__main__':
     pluckedCounter = 0
 
     for x in range(len(keyboard)):
-        frequency_exp = 2 ** ((x-12)/12)
-        frequency = CONCERT_A*frequency_exp
+        frequency = CONCERT_A*(1.059463**(x-12))
         freq_list.append(GuitarString(frequency))
 
     while True:
