@@ -38,8 +38,6 @@ if __name__ == '__main__':
                 string.resetTick()
                 string.pluck()
                 plucked_strings.add(string)
-                print("Plucked Strings Length: ", len(plucked_strings))
-                print("Plucked Counter:", pluckedCounter)
                 pluckedCounter += 1
         # compute the superposition of samples
 
